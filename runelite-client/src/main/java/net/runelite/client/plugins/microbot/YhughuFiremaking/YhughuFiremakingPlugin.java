@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.microbot.firstplugin;
+package net.runelite.client.plugins.microbot.YhughuFiremaking;
 
 import com.google.inject.Provides;
 import lombok.extern.slf4j.Slf4j;
@@ -13,40 +13,40 @@ import javax.inject.Inject;
 import java.awt.*;
 
 @PluginDescriptor(
-        name = PluginDescriptor.Default + "firstplugin",
-        description = "Microbot firstplugin",
-        tags = {"firstplugin", "microbot"},
+        name = PluginDescriptor.Default + "Yhughu's Firemaking",
+        description = "A firemaking script, to burn logs in varrock west.",
+        tags = {"firemaking", "microbot"},
         enabledByDefault = false
 )
 @Slf4j
-public class firstpluginPlugin extends Plugin {
+public class YhughuFiremakingPlugin extends Plugin {
     @Inject
-    private firstpluginConfig config;
+    private YhughuFiremakingConfig config;
     @Provides
-    firstpluginConfig provideConfig(ConfigManager configManager) {
-        return configManager.getConfig(firstpluginConfig.class);
+    YhughuFiremakingConfig provideConfig(ConfigManager configManager) {
+        return configManager.getConfig(YhughuFiremakingConfig.class);
     }
 
     @Inject
     private OverlayManager overlayManager;
     @Inject
-    private firstpluginOverlay firstpluginOverlay;
+    private YhughuFiremakingOverlay YhughuFiremakingOverlay;
 
     @Inject
-    firstpluginScript firstpluginScript;
+    YhughuFiremakingScript YhughuFiremakingScript;
 
 
     @Override
     protected void startUp() throws AWTException {
         if (overlayManager != null) {
-            overlayManager.add(firstpluginOverlay);
+            overlayManager.add(YhughuFiremakingOverlay);
         }
-        firstpluginScript.run(config);
+        YhughuFiremakingScript.run(config);
     }
 
     protected void shutDown() {
-        firstpluginScript.shutdown();
-        overlayManager.remove(firstpluginOverlay);
+        YhughuFiremakingScript.shutdown();
+        overlayManager.remove(YhughuFiremakingOverlay);
     }
     int ticks = 10;
     @Subscribe

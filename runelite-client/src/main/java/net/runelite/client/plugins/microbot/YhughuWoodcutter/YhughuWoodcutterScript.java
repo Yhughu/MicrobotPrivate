@@ -150,6 +150,7 @@ public class YhughuWoodcutterScript extends Script {
                 if(!Rs2Bank.isOpen()) {
                     Rs2Bank.useBank();
                 }
+                Rs2Bank.depositAllExcept(config.AXE().getName());
                 Rs2Bank.withdrawItem(config.AXE().getName());
                 CurrentWoodcuttingStatus = WoodcuttingStatus.MOVE_TO_AREA;
 
@@ -196,15 +197,15 @@ public class YhughuWoodcutterScript extends Script {
                 if (Rs2GameObject.interact(CloseTree, "Chop down")) {
                     waitForAnimationToComplete(20000);
                     Rs2Antiban.actionCooldown();
-                } else CurrentWoodcuttingStatus = WoodcuttingStatus.MOVE_TO_AREA;
-            }
+                }
+            } else CurrentWoodcuttingStatus = WoodcuttingStatus.MOVE_TO_AREA;
         } Rs2Player.waitForAnimation();
 
     }
 
     public void BankChoppedLogs () {
         if (config.TREE() == WoodcuttingTreeSelector.WILLOW){
-            Rs2Inventory.dropAllExcept(config.AXE().getName());
+            Rs2Inventory.dropAll("Willow logs");
             CurrentWoodcuttingStatus = WoodcuttingStatus.CHOP_LOGS;
         } else
         if(Rs2Bank.isNearBank(5)) {

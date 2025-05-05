@@ -2,9 +2,6 @@ package net.runelite.client.plugins.microbot.YhughuWoodcutter.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.runelite.api.ItemID;
-import net.runelite.api.Skill;
-import net.runelite.client.plugins.microbot.util.player.Rs2Player;
 
 @Getter
 @RequiredArgsConstructor

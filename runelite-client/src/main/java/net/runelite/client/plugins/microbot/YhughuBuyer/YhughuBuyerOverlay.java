@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.microbot.firstplugin;
+package net.runelite.client.plugins.microbot.YhughuBuyer;
 
 import net.runelite.client.plugins.microbot.Microbot;
 import net.runelite.client.ui.overlay.OverlayPanel;
@@ -9,10 +9,10 @@ import net.runelite.client.ui.overlay.components.TitleComponent;
 import javax.inject.Inject;
 import java.awt.*;
 
-public class firstpluginOverlay extends OverlayPanel {
+public class YhughuBuyerOverlay extends OverlayPanel {
 
     @Inject
-    firstpluginOverlay(firstpluginPlugin plugin)
+    YhughuBuyerOverlay(YhughuBuyerPlugin plugin)
     {
         super(plugin);
         setPosition(OverlayPosition.TOP_LEFT);
@@ -23,8 +23,8 @@ public class firstpluginOverlay extends OverlayPanel {
         try {
             panelComponent.setPreferredSize(new Dimension(200, 300));
             panelComponent.getChildren().add(TitleComponent.builder()
-                    .text("Micro Example V1.0.0")
-                    .color(Color.GREEN)
+                    .text("Yhughu's Buyer")
+                    .color(Color.CYAN)
                     .build());
 
             panelComponent.getChildren().add(LineComponent.builder().build());
