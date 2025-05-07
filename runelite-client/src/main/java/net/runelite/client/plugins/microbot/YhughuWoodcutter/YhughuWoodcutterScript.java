@@ -111,7 +111,7 @@ public class YhughuWoodcutterScript extends Script {
             case WILLOW:
                 return WillowArea.toWorldPointList().get(Rs2Random.between(WillowArea.toWorldPointList().size()/2 - 3, WillowArea.toWorldPointList().size()/2 + 3));
             case YEW:
-                return YewArea.toWorldPointList().get(Rs2Random.between(YewArea.toWorldPointList().size()/2 - 3, YewArea.toWorldPointList().size()/2 + 3));
+                return new WorldPoint(3087, 3476, 0);
         } return null;
     }
 

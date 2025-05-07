@@ -1,16 +1,11 @@
 package net.runelite.client.plugins.microbot.YhughuFiremaking;
 
-import net.runelite.api.Tile;
-import net.runelite.api.TileObject;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.plugins.microbot.Microbot;
 import net.runelite.client.plugins.microbot.Script;
-import net.runelite.client.plugins.microbot.YhughuWoodcutter.YhughuWoodcutterConfig;
-import net.runelite.client.plugins.microbot.aiofighter.skill.AttackStyleScript;
 import net.runelite.client.plugins.microbot.YhughuFiremaking.enums.FiremakingStatus;
 import net.runelite.client.plugins.microbot.util.bank.Rs2Bank;
-import net.runelite.client.plugins.microbot.util.bank.enums.BankLocation;
 import net.runelite.client.plugins.microbot.util.gameobject.Rs2GameObject;
 import net.runelite.client.plugins.microbot.util.inventory.Rs2Inventory;
 import net.runelite.client.plugins.microbot.util.math.Rs2Random;
@@ -77,6 +72,10 @@ public class YhughuFiremakingScript extends Script {
                 }
 
             }
+            if(! Rs2Bank.hasItem(config.LOG().getName(), true)) {
+                Rs2Bank.closeBank();
+                Rs2Player.logout();
+            }
             Rs2Bank.withdrawAll(config.LOG().getName(), true);
             if (Rs2Inventory.hasItem(config.LOG().getName())) {
                 FiremakingStatus = net.runelite.client.plugins.microbot.YhughuFiremaking.enums.FiremakingStatus.GOSTART;
@@ -89,11 +88,15 @@ public class YhughuFiremakingScript extends Script {
     private void GoToStart() {
         if(StartArea.contains(Rs2Player.getLocalPlayer().getWorldLocation())) {
             FiremakingStatus = net.runelite.client.plugins.microbot.YhughuFiremaking.enums.FiremakingStatus.BURNANDMOVE;
-        } else Rs2Walker.walkTo(StartArea.toWorldPointList().get(Rs2Random.between(0, StartArea.toWorldPointList().size()-1)));
+        } else {
+            Rs2Walker.walkTo(StartArea.toWorldPointList().get(Rs2Random.between(0, StartArea.toWorldPointList().size()-1)));
+            Rs2Walker.walkCanvas(StartArea.toWorldPointList().get(1));
+        }
     }
 
     private boolean IsFireHere (WorldPoint TileToCheck) {
-        if((Rs2GameObject.findGameObjectByLocation(TileToCheck) == Rs2GameObject.getTileObject(26185))) return false;
+        if((Rs2GameObject.findGameObjectByLocation(TileToCheck) == Rs2GameObject.getTileObject(26185))
+                || (Rs2GameObject.findGameObjectByLocation(TileToCheck) == Rs2GameObject.getTileObject(53154))  ) return false;
         else return true;
     }
 

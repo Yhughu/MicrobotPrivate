@@ -33,7 +33,7 @@ public class YhughuBuyerScript extends Script {
     private static final WorldArea VarrockGeneralArea = new WorldArea(3215, 3414, 3, 5, 0);
     private static final WorldArea BettysArea = new WorldArea(3012, 3257, 4, 4, 0);
     private static final WorldArea GerryArea = new WorldArea(3013, 3222, 4, 5, 0);
-    private static final WorldArea YewArea = new WorldArea(3085, 3468, 4, 14, 0);
+    private static final WorldArea ZaffArea = new WorldArea(3201, 3432, 3, 3, 0);
 
     public BuyingStatus currentBuyingStatus = BuyingStatus.MOVE_TO_SHOP;
     private YhughuBuyerConfig config;
@@ -77,7 +77,7 @@ public class YhughuBuyerScript extends Script {
     }
 
     public boolean HasItemsReady () {
-        return Rs2Inventory.hasItemAmount("coins", 10000 );
+        return Rs2Inventory.hasItemAmount("coins", 50000 );
     }
 
     private WorldPoint GetClosestBankOrDepositBox () {
@@ -107,6 +107,11 @@ public class YhughuBuyerScript extends Script {
                     System.out.println("Is in correct area.");
                     return true;
                 }
+            case "zaff":
+                if (ZaffArea.contains(Microbot.getClient().getLocalPlayer().getWorldLocation())) {
+                    System.out.println("Is in correct area.");
+                    return true;
+                }
         }
         return false;
     }
@@ -119,6 +124,8 @@ public class YhughuBuyerScript extends Script {
                 return BettysArea.toWorldPointList().get(Rs2Random.between(0, BettysArea.toWorldPointList().size() - 1));
             case ("gerrant"):
                 return GerryArea.toWorldPointList().get(Rs2Random.between(0, GerryArea.toWorldPointList().size() - 1));
+            case ("zaff"):
+                return ZaffArea.toWorldPointList().get(Rs2Random.between(0, ZaffArea.toWorldPointList().size() - 1));
         }
         return null;
     }
@@ -188,7 +195,7 @@ public class YhughuBuyerScript extends Script {
                 Rs2Player.logout();
             }
             currentBuyingStatus = BuyingStatus.MOVE_TO_SHOP;
-            if (!HasItemsReady()) Rs2Bank.withdrawDeficit("coins", Rs2Random.between(10000, 20000));
+            if (!HasItemsReady()) Rs2Bank.withdrawDeficit("coins", Rs2Random.between(50000, 80000));
         } else MoveToBankArea();
     }
 

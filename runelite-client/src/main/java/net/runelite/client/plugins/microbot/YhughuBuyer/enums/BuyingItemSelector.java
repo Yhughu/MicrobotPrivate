@@ -9,8 +9,9 @@ import lombok.RequiredArgsConstructor;
 public enum BuyingItemSelector {
     TINDERBOX("tinderbox", "varrockgeneral","Shop keeper", 0, null),
     MAGEHATS("blue wizard hat", "betty","Betty", 0, "wizard hat"),
-    SARDINE("raw sardine", "gerrant","Gerrant", 180, null);
-
+    SARDINE("raw sardine", "gerrant","Gerrant", 180, null),
+    STAFF("Staff of air", "zaff", "Zaff", 0, "Staff of water")
+;
     private final String name;
     private final String location;
     private final String npcname;
