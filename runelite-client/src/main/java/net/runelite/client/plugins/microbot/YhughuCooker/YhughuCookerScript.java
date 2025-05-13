@@ -12,6 +12,7 @@ import net.runelite.client.plugins.microbot.util.bank.Rs2Bank;
 import net.runelite.client.plugins.microbot.util.gameobject.Rs2GameObject;
 import net.runelite.client.plugins.microbot.util.inventory.Rs2Inventory;
 import net.runelite.client.plugins.microbot.util.keyboard.Rs2Keyboard;
+import net.runelite.client.plugins.microbot.util.math.Rs2Random;
 import net.runelite.client.plugins.microbot.util.player.Rs2Player;
 import net.runelite.client.plugins.microbot.util.walker.Rs2Walker;
 import net.runelite.client.plugins.microbot.util.widget.Rs2Widget;
@@ -125,11 +126,15 @@ public class YhughuCookerScript extends Script {
                 Rs2Keyboard.keyPress(KeyEvent.VK_SPACE);
             } else {
                 Rs2GameObject.interact(Range);
+                sleep(Rs2Random.between(2500,6780));
                 Rs2Antiban.actionCooldown();
             }
 
 
-        } else Microbot.log("Can't find range");
+        } else {
+            Microbot.log("Can't find range");
+            GoInside();
+        }
     }
     @Override
     public void shutdown() {

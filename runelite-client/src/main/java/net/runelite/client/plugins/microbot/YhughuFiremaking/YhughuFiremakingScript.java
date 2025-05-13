@@ -70,7 +70,6 @@ public class YhughuFiremakingScript extends Script {
                 if (! Rs2Inventory.hasItem("tinderbox")) {
                     Rs2Bank.withdrawItem("tinderbox");
                 }
-
             }
             if(! Rs2Bank.hasItem(config.LOG().getName(), true)) {
                 Rs2Bank.closeBank();
@@ -124,7 +123,7 @@ public class YhughuFiremakingScript extends Script {
             if (Rs2Inventory.hasItem(config.LOG().getName())) {
                 Rs2Inventory.use("tinderbox");
                 Rs2Inventory.use(config.LOG().getName());
-                sleepUntilOnClientThread(() -> Microbot.getClient().getLocalPlayer().getPoseAnimation() == 822, 30000);
+                sleepUntilOnClientThread(() -> Microbot.getClient().getLocalPlayer().getPoseAnimation() == 1205, 30000);
             } else if (!Rs2Inventory.hasItem(config.LOG().getName())) FiremakingStatus = net.runelite.client.plugins.microbot.YhughuFiremaking.enums.FiremakingStatus.BANKING;
         } else {
             Rs2Walker.walkTo(TileWithoutFire());
